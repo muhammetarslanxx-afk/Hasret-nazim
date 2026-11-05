@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hasret Naz’ım ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Georgia,serif;
+text-align:center;
+color:white;
+background:linear-gradient(135deg,#08051b,#260b42,#531746);
+overflow-x:hidden;
+}
+.container{max-width:650px;margin:auto;padding:20px}
+.card{
+background:#ffffff12;
+border:1px solid #d69cff;
+border-radius:22px;
+padding:25px;
+margin:25px 0;
+box-shadow:0 0 25px #c15cff35;
+}
+h1{color:#e5b7ff;font-size:40px}
+h2{color:#ffc8ef}
+.heart{font-size:65px;animation:beat 1s infinite}
+@keyframes beat{50%{transform:scale(1.2)}}
+.poem{font-size:20px;line-height:1.9;font-style:italic}
+button{
+background:linear-gradient(45deg,#8e2de2,#ff4fa3);
+color:white;border:0;padding:14px 24px;
+border-radius:30px;font-size:17px;cursor:pointer;
+}
+#secret{display:none;color:#ffd6f4;font-size:20px;line-height:1.8}
+.floating{
+position:fixed;bottom:-40px;pointer-events:none;
+animation:rise 7s linear forwards;z-index:99;
+}
+@keyframes rise{
+to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+iframe{width:100%;height:220px;border:0;border-radius:15px}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="card">
+<div class="heart">💜</div>
+<h1>Hasret Naz’ım</h1>
+<p>Bu site dünyanın en güzel insanına özel ❤️</p>
+<p>İyi ki varsın, iyi ki hayatımdasın.</p>
+</div>
+
+<div class="card">
+<h2>Hasret Naz’ıma 💌</h2>
+<div class="poem">
+Hasret Naz’ım, gönlümün en güzel yanı,<br>
+Seninle güzelleşti hayatın her anı.<br>
+Yıldızlar şahidim, ay bile duysun,<br>
+Kalbim her zaman seninle olsun.<br><br>
+
+Mavi gökyüzüm, mor gecem,<br>
+Sana her gün yeniden âşık olacağım.<br>
+İyi ki varsın, iyi ki benimsin,<br>
+Hasret Naz’ım, en güzel düşümsün. ♾️💜
+</div>
+</div>
+
+<div class="card">
+<h2>🎵 Bizim Şarkımız</h2>
+<p>Eylem Aktaş – Yüreğimden Tut</p>
+
+<a href="https://www.youtube.com/results?search_query=Eylem+Akta%C5%9F+Y%C3%BCre%C4%9Fimden+Tut"
+target="_blank">
+<button>Şarkımızı Dinle ❤️</button>
+</a>
+</div>
+
+<div class="card">
+<h2>💌 Sana Sürprizim Var</h2>
+<button onclick="showMessage()">Mesajı Aç</button>
+<p id="secret">
+Hasret Naz’ım ❤️<br>
+Sen benim en güzel tesadüfüm,<br>
+en kıymetli hayalim ve kalbimin sahibisin.<br>
+Seni her gün yeniden seviyorum. 💜
+</p>
+</div>
+
+</div>
+
+<script>
+function showMessage(){
+let s=document.getElementById("secret");
+s.style.display=s.style.display==="block"?"none":"block";
+}
+
+function createHeart(){
+let h=document.createElement("div");
+h.className="floating";
+h.innerHTML=["💜","❤️","💕","💖","💘"][Math.floor(Math.random()*5)];
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(20+Math.random()*30)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
+}
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
