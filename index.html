@@ -4,226 +4,336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Hasret Naz’ım ❤️</title>
+<title>Hasret Naz’ım 💜</title>
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: Georgia, serif;
-    color: white;
-    text-align: center;
-    background: linear-gradient(135deg, #08051b, #260b42, #531746);
-    overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg,#19002e,#650052,#bd397e);
+  overflow-x: hidden;
 }
 
-.container {
-    max-width: 650px;
-    margin: auto;
-    padding: 20px;
+#passwordScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg,#19002e,#650052,#bd397e);
 }
 
-.card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid #d69cff;
-    border-radius: 22px;
-    padding: 25px;
-    margin: 25px 0;
-    box-shadow: 0 0 25px #c15cff35;
+.password-box {
+  width: 100%;
+  max-width: 360px;
+  padding: 35px 25px;
+  border-radius: 25px;
+  background: rgba(255,255,255,.13);
+  box-shadow: 0 0 35px #ff65ad55;
 }
 
-h1 {
-    color: #e5b7ff;
-    font-size: 40px;
-    text-shadow: 0 0 20px #a020f0;
+.password-box h1 {
+  color: #ffd1ed;
 }
 
-h2 {
-    color: #ffc8ef;
-}
-
-.heart {
-    font-size: 65px;
-    animation: beat 1s infinite;
-}
-
-@keyframes beat {
-    50% {
-        transform: scale(1.2);
-    }
-}
-
-.poem {
-    font-size: 20px;
-    line-height: 1.9;
-    font-style: italic;
-    color: #f4dcff;
+input {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 18px;
 }
 
 button {
-    background: linear-gradient(45deg, #8e2de2, #ff4fa3);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 30px;
-    font-size: 17px;
-    cursor: pointer;
-    margin-top: 15px;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 25px;
+  margin-top: 15px;
+  background: #ff65ad;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-#secret {
-    display: none;
-    color: #ffd6f4;
-    font-size: 20px;
-    line-height: 1.8;
+.password-box button {
+  width: 100%;
 }
 
-.floating {
-    position: fixed;
-    bottom: -40px;
-    pointer-events: none;
-    animation: rise 7s linear forwards;
-    z-index: 99;
+#siteContent {
+  display: none;
+  padding: 30px 18px 60px;
 }
 
-@keyframes rise {
-    to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
+.container {
+  max-width: 650px;
+  margin: auto;
 }
 
-iframe {
-    width: 100%;
-    height: 220px;
-    border: 0;
-    border-radius: 15px;
+.heart {
+  font-size: 48px;
+  margin: 20px 0;
+  animation: beat 1.2s infinite;
+}
+
+@keyframes beat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+h1 {
+  font-size: 38px;
+  color: #ffd1ed;
+  text-shadow: 0 0 18px #ff6bb7;
+}
+
+.subtitle {
+  color: #ffe4f3;
+}
+
+.photo-box,
+.poem-box,
+.music-box {
+  margin: 25px auto;
+  padding: 25px 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+.photo-box img {
+  width: 100%;
+  max-width: 420px;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.poem-box {
+  line-height: 2;
+  font-size: 17px;
+}
+
+.poem-box h2,
+.music-box h2 {
+  color: #ffd1ed;
+}
+
+audio {
+  width: 100%;
+  margin-top: 15px;
+}
+
+#surprise {
+  display: none;
+  margin: 25px auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.15);
+  line-height: 1.9;
 }
 
 footer {
-    color: #d9b8ed;
-    padding: 20px;
+  margin-top: 40px;
+  color: #ffd8ee;
+}
+
+.floating-heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  animation: floatUp 7s linear forwards;
+  z-index: 5;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- ŞİFRE EKRANI -->
+<div id="passwordScreen">
+  <div class="password-box">
+    <div class="heart">💜</div>
+    <h1>Hasret Naz’ım</h1>
+    <p>Bu sürpriz sadece sana özel...</p>
 
-<!-- GİRİŞ -->
-<div class="card">
+    <input
+      type="password"
+      id="passwordInput"
+      placeholder="Şifreyi gir"
+    >
+
+    <button onclick="checkPassword()">
+      Sürprizi Aç 💌
+    </button>
+
+    <p id="errorMessage"></p>
+  </div>
+</div>
+
+<!-- ANA SAYFA -->
+<div id="siteContent">
+  <div class="container">
+
     <div class="heart">💜</div>
 
     <h1>Hasret Naz’ım</h1>
 
-    <p>
-        Bu küçük site dünyanın en güzel insanına özel...
+    <p class="subtitle">
+      Sana kalbimden gelen küçük bir sürpriz...
     </p>
 
-    <p>
-        İyi ki varsın, iyi ki hayatımdasın ❤️
-    </p>
-</div>
-
-<!-- ŞİİR -->
-<div class="card">
-    <h2>Hasret Naz’ıma 💌</h2>
-
-    <div class="poem">
-        Hasret Naz’ım, gönlümün en güzel yanı,<br>
-        Seninle güzelleşti hayatın her anı.<br>
-        Yıldızlar şahidim, ay bile duysun,<br>
-        Kalbim her zaman seninle olsun.<br><br>
-
-        Mavi gökyüzüm, mor gecem,<br>
-        Sana her gün yeniden âşık olacağım.<br>
-        İyi ki varsın, iyi ki benimsin,<br>
-        Hasret Naz’ım, en güzel düşümsün. ♾️💜
+    <!-- FOTOĞRAF -->
+    <div class="photo-box">
+      <h2>Bizden Bir Kare 💕</h2>
+      <img src="foto.jpg" alt="Özel fotoğrafımız">
     </div>
-</div>
 
-<!-- ŞARKI -->
-<div class="card">
-    <h2>🎵 Bizim Şarkımız</h2>
+    <!-- ŞİİR -->
+    <div class="poem-box">
+      <h2>Yüreğimden Sana 💜</h2>
 
-    <p>Eylem Aktaş – Yüreğimden Tut</p>
+      Hasret Naz’ım, gönlümün en güzel yanı,<br>
+      Seninle güzelleşti hayatın her anı.<br>
+      Yıldızlar şahidim, ay bile duysun,<br>
+      Kalbim her zaman seninle olsun.<br><br>
 
-    <iframe
-        src="https://www.youtube-nocookie.com/embed/U8B_-XQsXX8?autoplay=1&mute=1&loop=1&playlist=U8B_-XQsXX8"
-        title="Yüreğimden Tut"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen>
-    </iframe>
+      Mavi gökyüzüm, mor gecem,<br>
+      Sana her gün yeniden âşık olacağım.<br>
+      İyi ki varsın, iyi ki benimsin,<br>
+      Hasret Naz’ım, sen benim en güzel düşümsün. ♾️💜
+    </div>
 
-    <p>
-        Bu şarkı sana, Hasret Naz’ım ❤️
-    </p>
-</div>
-
-<!-- SÜRPRİZ -->
-<div class="card">
-    <h2>💌 Sana Sürprizim Var</h2>
-
-    <button onclick="showMessage()">
-        Sürprizi Aç ❤️
+    <!-- SÜRPRİZ -->
+    <button onclick="showSurprise()">
+      Sana bir şey söyleyeceğim 💌
     </button>
 
-    <p id="secret">
-        Hasret Naz’ım ❤️<br><br>
+    <div id="surprise">
+      <h2>Hasret Naz’ım 💜</h2>
+      <p>
+        Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
+        Bu sayfa da sana söylemek istediklerimin
+        küçücük bir parçası...
+      </p>
+      <p>
+        İyi ki hayatımdasın.
+        Her şeyin en güzeli senin olsun. 💜
+      </p>
+      <div class="heart">❤️</div>
+    </div>
 
-        Sen benim en güzel tesadüfüm,<br>
-        en kıymetli hayalim ve kalbimin sahibisin.<br><br>
+    <!-- MÜZİK -->
+    <div class="music-box">
+      <h2>Bizim Şarkımız 🎵</h2>
+      <p>Eylem Aktaş – Yüreğimden Tut</p>
 
-        Gülüşün dünyamı güzelleştiriyor.<br>
-        İyi ki varsın, iyi ki hayatımdasın.<br><br>
+      <audio id="ourSong" controls preload="auto">
+        <source
+          src="https://drive.google.com/uc?export=download&id=11LpN_9aJ5h8UVctZHoNewZugovWewU92"
+          type="audio/mpeg">
+        Tarayıcınız ses oynatmayı desteklemiyor.
+      </audio>
 
-        Seni her gün yeniden seviyorum. 💜
-    </p>
-</div>
+      <p style="font-size:13px;color:#ffe4f3">
+        Şarkı başlamazsa oynat düğmesine dokun 💜
+      </p>
+    </div>
 
-<footer>
-    Sonsuza kadar sen ve ben ❤️
-</footer>
+    <footer>
+      Senin için, kalpten... 💜
+    </footer>
 
+  </div>
 </div>
 
 <script>
-function showMessage() {
-    let s = document.getElementById("secret");
+function checkPassword() {
+  const password =
+    document.getElementById("passwordInput").value;
 
-    if (s.style.display === "block") {
-        s.style.display = "none";
-    } else {
-        s.style.display = "block";
-    }
+  if (password === "15.10.26") {
+
+    document.getElementById("passwordScreen").style.display = "none";
+    document.getElementById("siteContent").style.display = "block";
+
+    const song = document.getElementById("ourSong");
+
+    song.play().catch(function() {
+      console.log("Oynatmak için müzik düğmesine dokun.");
+    });
+
+    startHearts();
+
+  } else {
+    document.getElementById("errorMessage").innerText =
+      "Şifre yanlış, tekrar dene 💔";
+  }
+}
+
+document.getElementById("passwordInput")
+.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    checkPassword();
+  }
+});
+
+function showSurprise() {
+  const box = document.getElementById("surprise");
+
+  box.style.display =
+    box.style.display === "block" ? "none" : "block";
 }
 
 function createHeart() {
-    let h = document.createElement("div");
+  const heart = document.createElement("div");
+  heart.className = "floating-heart";
 
-    h.className = "floating";
+  const hearts = ["💜","❤️","💕","💗","💖"];
 
-    h.innerHTML = ["💜", "❤️", "💕", "💖", "💘"][
-        Math.floor(Math.random() * 5)
-    ];
+  heart.innerHTML =
+    hearts[Math.floor(Math.random() * hearts.length)];
 
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.fontSize = (20 + Math.random() * 30) + "px";
-    h.style.animationDuration = (4 + Math.random() * 4) + "s";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
 
-    document.body.appendChild(h);
+  document.body.appendChild(heart);
 
-    setTimeout(() => {
-        h.remove();
-    }, 8000);
+  setTimeout(function() {
+    heart.remove();
+  }, 9000);
 }
 
-setInterval(createHeart, 400);
+let heartTimer;
+
+function startHearts() {
+  if (heartTimer) return;
+  heartTimer = setInterval(createHeart, 450);
+}
 </script>
 
 </body>
