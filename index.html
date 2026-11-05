@@ -7,127 +7,101 @@
 <title>Hasret Naz’ım 💜</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
-  background: linear-gradient(135deg,#19002e,#650052,#bd397e);
-  overflow-x: hidden;
+  background: linear-gradient(135deg,#160c2b,#51245f,#a04478);
+  min-height: 100vh;
 }
 
 #passwordScreen {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 10;
+  background: linear-gradient(135deg,#160c2b,#51245f);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: linear-gradient(135deg,#19002e,#650052,#bd397e);
 }
 
-.password-box {
+.login {
   width: 100%;
-  max-width: 360px;
-  padding: 35px 25px;
+  max-width: 350px;
+  padding: 30px 20px;
   border-radius: 25px;
-  background: rgba(255,255,255,.13);
-  box-shadow: 0 0 35px #ff65ad55;
-}
-
-.password-box h1 {
-  color: #ffd1ed;
+  background: #ffffff18;
+  box-shadow: 0 0 30px #0005;
 }
 
 input {
   width: 100%;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 14px;
   border: none;
   border-radius: 12px;
+  margin: 15px 0;
   text-align: center;
   font-size: 18px;
 }
 
 button {
+  background: #e7a2dc;
+  color: #38143f;
   border: none;
-  border-radius: 30px;
-  padding: 14px 25px;
-  margin-top: 15px;
-  background: #ff65ad;
-  color: white;
+  padding: 13px 25px;
+  border-radius: 25px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.password-box button {
-  width: 100%;
-}
-
 #siteContent {
   display: none;
-  padding: 30px 18px 60px;
-}
-
-.container {
-  max-width: 650px;
-  margin: auto;
-}
-
-.heart {
-  font-size: 48px;
-  margin: 20px 0;
-  animation: beat 1.2s infinite;
-}
-
-@keyframes beat {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
+  padding: 25px 15px 60px;
 }
 
 h1 {
-  font-size: 38px;
-  color: #ffd1ed;
-  text-shadow: 0 0 18px #ff6bb7;
+  color: #ffd4f6;
+  font-size: 34px;
+  text-shadow: 0 0 15px #ff8de0;
 }
 
-.subtitle {
-  color: #ffe4f3;
-}
-
-.photo-box,
-.poem-box,
-.music-box {
+.card {
+  max-width: 650px;
   margin: 25px auto;
-  padding: 25px 20px;
+  padding: 25px 18px;
+  background: #ffffff18;
+  border: 1px solid #ffffff30;
   border-radius: 22px;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 8px 25px #0003;
 }
 
-.photo-box img {
-  width: 100%;
-  max-width: 420px;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 18px;
-}
-
-.poem-box {
+.poem {
   line-height: 2;
   font-size: 17px;
+  white-space: pre-line;
 }
 
-.poem-box h2,
-.music-box h2 {
-  color: #ffd1ed;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.gallery img:first-child {
+  grid-column: span 2;
+  height: 300px;
 }
 
 audio {
@@ -135,204 +109,144 @@ audio {
   margin-top: 15px;
 }
 
-#surprise {
-  display: none;
-  margin: 25px auto;
-  padding: 25px;
-  border-radius: 20px;
-  background: rgba(255,255,255,.15);
-  line-height: 1.9;
-}
-
-footer {
-  margin-top: 40px;
-  color: #ffd8ee;
-}
-
-.floating-heart {
+.heart {
   position: fixed;
   bottom: -30px;
+  animation: floatUp 7s linear infinite;
   pointer-events: none;
-  animation: floatUp 7s linear forwards;
-  z-index: 5;
+  z-index: 1;
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(0) rotate(0);
-    opacity: 0;
-  }
-  15% { opacity: 1; }
-  100% {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+#surprise {
+  display: none;
+  line-height: 1.8;
+  font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ŞİFRE EKRANI -->
 <div id="passwordScreen">
-  <div class="password-box">
-    <div class="heart">💜</div>
-    <h1>Hasret Naz’ım</h1>
-    <p>Bu sürpriz sadece sana özel...</p>
-
-    <input
-      type="password"
-      id="passwordInput"
-      placeholder="Şifreyi gir"
-    >
-
-    <button onclick="checkPassword()">
-      Sürprizi Aç 💌
-    </button>
-
-    <p id="errorMessage"></p>
+  <div class="login">
+    <h1>💜 Hasret Naz’ım 💜</h1>
+    <p>Sana özel hazırlanan bu sayfaya hoş geldin.</p>
+    <p>Giriş şifresini yaz ❤️</p>
+    <input type="password" id="password" placeholder="Şifre">
+    <br>
+    <button onclick="checkPassword()">Giriş Yap 💜</button>
+    <p id="error" style="color:#ffc1d9"></p>
   </div>
 </div>
 
-<!-- ANA SAYFA -->
 <div id="siteContent">
-  <div class="container">
 
-    <div class="heart">💜</div>
+  <h1>Hasret Naz’ım 💜</h1>
+  <p>Bu sayfa sadece sana özel...</p>
 
-    <h1>Hasret Naz’ım</h1>
+  <div class="card">
+    <h2>💜 Sana Birkaç Sözüm Var</h2>
+    <div class="poem">
+Hasret Naz’ım, gönlümün en güzel yanı,
+Seninle güzelleşti hayatın her anı.
+Yıldızlar şahidim, ay bile duysun,
+Kalbim her zaman seninle olsun.
 
-    <p class="subtitle">
-      Sana kalbimden gelen küçük bir sürpriz...
-    </p>
-
-    <!-- FOTOĞRAF -->
-    <div class="photo-box">
-      <h2>Bizden Bir Kare 💕</h2>
-      <img src="foto.jpg" alt="Özel fotoğrafımız">
+Mavi gökyüzüm, mor gecem,
+Sana her gün yeniden âşık olacağım.
+İyi ki varsın, iyi ki benimsin,
+Hasret Naz’ım, sen benim en güzel düşümsün. ♾️💜
     </div>
+  </div>
 
-    <!-- ŞİİR -->
-    <div class="poem-box">
-      <h2>Yüreğimden Sana 💜</h2>
+  <div class="card">
+    <h2>🎵 Bizim Şarkımız</h2>
+    <p>Eylem Aktaş - Yüreğimden Tut</p>
+    <audio id="ourSong" controls preload="auto">
+      <source src="muzik.mp3" type="audio/mpeg">
+      Tarayıcınız müziği desteklemiyor.
+    </audio>
+    <p style="font-size:13px">Şarkı başlamazsa oynat tuşuna dokun 💜</p>
+  </div>
 
-      Hasret Naz’ım, gönlümün en güzel yanı,<br>
-      Seninle güzelleşti hayatın her anı.<br>
-      Yıldızlar şahidim, ay bile duysun,<br>
-      Kalbim her zaman seninle olsun.<br><br>
-
-      Mavi gökyüzüm, mor gecem,<br>
-      Sana her gün yeniden âşık olacağım.<br>
-      İyi ki varsın, iyi ki benimsin,<br>
-      Hasret Naz’ım, sen benim en güzel düşümsün. ♾️💜
+  <div class="card">
+    <h2>📸 Hasret Naz’ımla Anılarımız</h2>
+    <div class="gallery">
+      <img src="foto1.jpg" alt="Anımız 1">
+      <img src="foto2.jpg" alt="Anımız 2">
+      <img src="foto3.jpg" alt="Anımız 3">
+      <img src="foto4.jpg" alt="Anımız 4">
+      <img src="foto5.jpg" alt="Anımız 5">
+      <img src="foto6.jpg" alt="Anımız 6">
+      <img src="foto7.jpg" alt="Anımız 7">
     </div>
+  </div>
 
-    <!-- SÜRPRİZ -->
-    <button onclick="showSurprise()">
-      Sana bir şey söyleyeceğim 💌
-    </button>
-
+  <div class="card">
+    <h2>🎁 Sana Bir Sürprizim Var</h2>
+    <button onclick="showSurprise()">Sürprizi Aç 💜</button>
     <div id="surprise">
-      <h2>Hasret Naz’ım 💜</h2>
       <p>
         Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
-        Bu sayfa da sana söylemek istediklerimin
-        küçücük bir parçası...
-      </p>
-      <p>
+        Bu sayfa da sana söylemek istediklerimin küçücük bir parçası...
         İyi ki hayatımdasın.
         Her şeyin en güzeli senin olsun. 💜
       </p>
-      <div class="heart">❤️</div>
+      <h2>Hasret Naz’ım ♾️</h2>
     </div>
-
-    <!-- MÜZİK -->
-    <div class="music-box">
-      <h2>Bizim Şarkımız 🎵</h2>
-      <p>Eylem Aktaş – Yüreğimden Tut</p>
-
-      <audio id="ourSong" controls preload="auto">
-        <source
-          src="https://drive.google.com/uc?export=download&id=11LpN_9aJ5h8UVctZHoNewZugovWewU92"
-          type="audio/mpeg">
-        Tarayıcınız ses oynatmayı desteklemiyor.
-      </audio>
-
-      <p style="font-size:13px;color:#ffe4f3">
-        Şarkı başlamazsa oynat düğmesine dokun 💜
-      </p>
-    </div>
-
-    <footer>
-      Senin için, kalpten... 💜
-    </footer>
-
   </div>
+
+  <p>Senin için hazırlandı 💜</p>
+
 </div>
 
 <script>
+const correctPassword = "15.10.26";
+
 function checkPassword() {
-  const password =
-    document.getElementById("passwordInput").value;
+  const entered = document.getElementById("password").value;
 
-  if (password === "15.10.26") {
-
+  if (entered === correctPassword) {
     document.getElementById("passwordScreen").style.display = "none";
     document.getElementById("siteContent").style.display = "block";
 
     const song = document.getElementById("ourSong");
-
-    song.play().catch(function() {
-      console.log("Oynatmak için müzik düğmesine dokun.");
+    song.play().catch(() => {
+      // Otomatik oynatma engellenirse kullanıcı oynat tuşuna basabilir.
     });
 
     startHearts();
-
   } else {
-    document.getElementById("errorMessage").innerText =
-      "Şifre yanlış, tekrar dene 💔";
+    document.getElementById("error").textContent = "Şifre yanlış, tekrar dene ❤️";
   }
 }
 
-document.getElementById("passwordInput")
-.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    checkPassword();
-  }
+document.getElementById("password").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") checkPassword();
 });
 
 function showSurprise() {
-  const box = document.getElementById("surprise");
-
-  box.style.display =
-    box.style.display === "block" ? "none" : "block";
+  document.getElementById("surprise").style.display = "block";
 }
-
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "floating-heart";
-
-  const hearts = ["💜","❤️","💕","💗","💖"];
-
-  heart.innerHTML =
-    hearts[Math.floor(Math.random() * hearts.length)];
-
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (16 + Math.random() * 20) + "px";
-  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
-
-  document.body.appendChild(heart);
-
-  setTimeout(function() {
-    heart.remove();
-  }, 9000);
-}
-
-let heartTimer;
 
 function startHearts() {
-  if (heartTimer) return;
-  heartTimer = setInterval(createHeart, 450);
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = ["💜","❤️","💕","💗","💖"][Math.floor(Math.random()*5)];
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (18 + Math.random()*25) + "px";
+    heart.style.animationDuration = (5 + Math.random()*5) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+  }, 500);
 }
 </script>
 
