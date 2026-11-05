@@ -7,7 +7,9 @@
 <title>Hasret Naz’ım 💜</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -52,7 +54,7 @@ button {
   background: #e7a2dc;
   color: #38143f;
   border: none;
-  padding: 13px 25px;
+  padding: 13px 20px;
   border-radius: 25px;
   font-size: 16px;
   font-weight: bold;
@@ -86,22 +88,38 @@ h1 {
   white-space: pre-line;
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 12px;
+.slideshow {
+  position: relative;
+  max-width: 500px;
+  margin: 10px auto;
 }
 
-.gallery img {
+.slide {
+  display: none;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 15px;
+  height: 380px;
+  object-fit: contain;
+  background: #160c2b;
+  border-radius: 18px;
 }
 
-.gallery img:first-child {
-  grid-column: span 2;
-  height: 300px;
+.slide.active {
+  display: block;
+}
+
+.slideshow button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 15px;
+}
+
+.slideshow button:first-of-type {
+  left: 10px;
+}
+
+.slideshow button:last-of-type {
+  right: 10px;
 }
 
 audio {
@@ -112,20 +130,28 @@ audio {
 .heart {
   position: fixed;
   bottom: -30px;
-  animation: floatUp 7s linear infinite;
+  animation: floatUp 7s linear forwards;
   pointer-events: none;
   z-index: 1;
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(0) rotate(0); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 #surprise {
   display: none;
-  line-height: 1.8;
+  line-height: 1.9;
   font-size: 18px;
 }
 </style>
@@ -133,71 +159,135 @@ audio {
 
 <body>
 
+<!-- ŞİFRELİ GİRİŞ -->
 <div id="passwordScreen">
   <div class="login">
     <h1>💜 Hasret Naz’ım 💜</h1>
     <p>Sana özel hazırlanan bu sayfaya hoş geldin.</p>
     <p>Giriş şifresini yaz ❤️</p>
-    <input type="password" id="password" placeholder="Şifre">
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Şifre"
+    >
+
     <br>
-    <button onclick="checkPassword()">Giriş Yap 💜</button>
+
+    <button onclick="checkPassword()">
+      Giriş Yap 💜
+    </button>
+
     <p id="error" style="color:#ffc1d9"></p>
   </div>
 </div>
 
+<!-- ANA SAYFA -->
 <div id="siteContent">
 
   <h1>Hasret Naz’ım 💜</h1>
   <p>Bu sayfa sadece sana özel...</p>
 
+  <!-- UZUN ŞİİR -->
   <div class="card">
     <h2>💜 Sana Birkaç Sözüm Var</h2>
+
     <div class="poem">
 Hasret Naz’ım, gönlümün en güzel yanı,
-Seninle güzelleşti hayatın her anı.
-Yıldızlar şahidim, ay bile duysun,
-Kalbim her zaman seninle olsun.
+Seninle anlam buldu hayatın her anı.
+Bir gülüşün yeter, aydınlanır gecem,
+Adını kalbime yazdım, en güzel hecem.
+
+Bazen bir kelime, bazen bir bakış,
+Seninle güzelleşir en sıradan akış.
+Uzaklarda olsak da değişmez hislerim,
+Her yeni günde sana uzanır dileklerim.
 
 Mavi gökyüzüm, mor gecem,
-Sana her gün yeniden âşık olacağım.
-İyi ki varsın, iyi ki benimsin,
-Hasret Naz’ım, sen benim en güzel düşümsün. ♾️💜
+Kalbimde sakladığım en güzel sevincim.
+Yıldızlar şahidim, ay bile duysun,
+Gönlümdeki güzel dilekler hep seninle olsun.
+
+Zaman geçse de hatıralar kalsın,
+Her güzel anımız kalbimizde yaşasın.
+Birlikte gülelim, birlikte hayal kuralım,
+Güzel günlere umutla yol alalım.
+
+Bazen hayat yorucu, günler uzun olabilir,
+Ama güzel bir söz her şeyi değiştirebilir.
+Bir tebessümün yeter içimi ısıtmaya,
+Bir güzel anın yeter yeniden umutlanmaya.
+
+İyi ki varsın, iyi ki tanıdım seni,
+Güzelleştirdin hayatımın birçok gününü.
+Bu küçük sayfa anlatsın sana,
+Söyleyemediğim nice güzel duyguyu...
+
+Hasret Naz’ım, sen benim en güzel düşümsün,
+Kalbimde sakladığım özel bir hikâyesin.
+Her satırda bir dilek, her kelimede bir iz,
+Güzel günlerimiz olsun, hep umutla ve sevgiyle. ♾️💜
     </div>
   </div>
 
+  <!-- MÜZİK -->
   <div class="card">
     <h2>🎵 Bizim Şarkımız</h2>
     <p>Eylem Aktaş - Yüreğimden Tut</p>
+
     <audio id="ourSong" controls preload="auto">
       <source src="muzik.mp3" type="audio/mpeg">
       Tarayıcınız müziği desteklemiyor.
     </audio>
-    <p style="font-size:13px">Şarkı başlamazsa oynat tuşuna dokun 💜</p>
+
+    <p style="font-size:13px">
+      Şarkı başlamazsa oynat tuşuna dokun 💜
+    </p>
   </div>
 
+  <!-- FOTOĞRAF SLAYTI -->
   <div class="card">
-    <h2>📸 Hasret Naz’ımla Anılarımız</h2>
-    <div class="gallery">
-      <img src="foto1.jpg" alt="Anımız 1">
-      <img src="foto2.jpg" alt="Anımız 2">
-      <img src="foto3.jpg" alt="Anımız 3">
-      <img src="foto4.jpg" alt="Anımız 4">
-      <img src="foto5.jpg" alt="Anımız 5">
-      <img src="foto6.jpg" alt="Anımız 6">
-      <img src="foto7.jpg" alt="Anımız 7">
+
+    <div class="slideshow">
+
+      <img class="slide" src="foto1.jpg" alt="Fotoğraf 1">
+      <img class="slide" src="foto2.jpg" alt="Fotoğraf 2">
+      <img class="slide" src="foto3.jpg" alt="Fotoğraf 3">
+      <img class="slide" src="foto4.jpg" alt="Fotoğraf 4">
+      <img class="slide" src="foto5.jpg" alt="Fotoğraf 5">
+      <img class="slide" src="foto6.jpg" alt="Fotoğraf 6">
+      <img class="slide" src="foto7.jpg" alt="Fotoğraf 7">
+
+      <button onclick="changeSlide(-1)">❮</button>
+      <button onclick="changeSlide(1)">❯</button>
+
     </div>
+
+    <p id="slideNumber">1 / 7 💜</p>
   </div>
 
+  <!-- SÜRPRİZ -->
   <div class="card">
     <h2>🎁 Sana Bir Sürprizim Var</h2>
-    <button onclick="showSurprise()">Sürprizi Aç 💜</button>
+
+    <button onclick="showSurprise()">
+      Sürprizi Aç 💜
+    </button>
+
     <div id="surprise">
       <p>
         Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
-        Bu sayfa da sana söylemek istediklerimin küçücük bir parçası...
-        İyi ki hayatımdasın.
-        Her şeyin en güzeli senin olsun. 💜
+        Bu sayfa da sana söylemek istediklerimin küçücük
+        bir parçası...
+
+        Her fotoğraf bir hatıra, her şarkı ayrı bir duygu,
+        her satır sana anlatmak istediğim güzel şeylerin
+        küçük bir parçası.
+
+        Umarım bu sayfa yüzünde güzel bir tebessüm bırakır.
+        İyi ki hayatımdasın. Her şeyin en güzeli senin olsun. 💜
       </p>
+
       <h2>Hasret Naz’ım ♾️</h2>
     </div>
   </div>
@@ -207,47 +297,127 @@ Hasret Naz’ım, sen benim en güzel düşümsün. ♾️💜
 </div>
 
 <script>
+
+// ŞİFRE
 const correctPassword = "15.10.26";
 
+// GİRİŞ
 function checkPassword() {
+
   const entered = document.getElementById("password").value;
 
   if (entered === correctPassword) {
+
     document.getElementById("passwordScreen").style.display = "none";
     document.getElementById("siteContent").style.display = "block";
 
     const song = document.getElementById("ourSong");
+
     song.play().catch(() => {
-      // Otomatik oynatma engellenirse kullanıcı oynat tuşuna basabilir.
+      // Gerekirse kullanıcı oynat tuşuna basabilir.
     });
 
+    showSlide(0);
+    startSlideshow();
     startHearts();
+
   } else {
-    document.getElementById("error").textContent = "Şifre yanlış, tekrar dene ❤️";
+
+    document.getElementById("error").textContent =
+      "Şifre yanlış, tekrar dene ❤️";
+
   }
 }
 
+// ENTER TUŞU
 document.getElementById("password").addEventListener("keydown", function(e) {
-  if (e.key === "Enter") checkPassword();
+  if (e.key === "Enter") {
+    checkPassword();
+  }
 });
 
-function showSurprise() {
-  document.getElementById("surprise").style.display = "block";
+// FOTOĞRAF SLAYTI
+let currentSlide = 0;
+let slideTimer;
+
+function showSlide(index) {
+
+  const slides = document.querySelectorAll(".slide");
+
+  if (index >= slides.length) {
+    currentSlide = 0;
+  } else if (index < 0) {
+    currentSlide = slides.length - 1;
+  } else {
+    currentSlide = index;
+  }
+
+  slides.forEach(slide => {
+    slide.classList.remove("active");
+  });
+
+  slides[currentSlide].classList.add("active");
+
+  document.getElementById("slideNumber").textContent =
+    (currentSlide + 1) + " / " + slides.length + " 💜";
+
 }
 
+function changeSlide(direction) {
+
+  showSlide(currentSlide + direction);
+  startSlideshow();
+
+}
+
+function startSlideshow() {
+
+  clearInterval(slideTimer);
+
+  slideTimer = setInterval(() => {
+    showSlide(currentSlide + 1);
+  }, 4000);
+
+}
+
+// SÜRPRİZ
+function showSurprise() {
+
+  document.getElementById("surprise").style.display = "block";
+
+}
+
+// KALP ANİMASYONU
 function startHearts() {
+
   setInterval(() => {
+
     const heart = document.createElement("div");
+
     heart.className = "heart";
-    heart.textContent = ["💜","❤️","💕","💗","💖"][Math.floor(Math.random()*5)];
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (18 + Math.random()*25) + "px";
-    heart.style.animationDuration = (5 + Math.random()*5) + "s";
+
+    heart.textContent = ["💜","❤️","💕","💗","💖"][
+      Math.floor(Math.random() * 5)
+    ];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+      (18 + Math.random() * 25) + "px";
+
+    heart.style.animationDuration =
+      (5 + Math.random() * 5) + "s";
+
     document.body.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 10000);
+    setTimeout(() => {
+      heart.remove();
+    }, 10000);
+
   }, 500);
+
 }
+
 </script>
 
 </body>
