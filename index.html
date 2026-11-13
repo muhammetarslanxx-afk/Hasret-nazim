@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -61,11 +62,17 @@ button {
   margin: 8px;
 }
 
+button:active {
+  transform: scale(0.96);
+}
+
 #siteContent {
   display: none;
   padding: 20px;
   max-width: 750px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
@@ -92,6 +99,17 @@ h1 {
 
 .slideshow img.active {
   display: block;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.photo-counter {
+  color: #e6b8ff;
+  margin-top: 12px;
 }
 
 .poem-title {
@@ -149,6 +167,11 @@ footer {
   padding: 30px;
   color: #e6b8ff;
 }
+
+audio {
+  width: 100%;
+  max-width: 400px;
+}
 </style>
 </head>
 
@@ -160,11 +183,14 @@ footer {
     <h1>Hasret Naz’ım 💜</h1>
     <p>Bu küçük dünyanın kapısı sana özel...</p>
 
-    <input type="password" id="passwordInput"
-           placeholder="Şifreyi gir">
+    <input
+      type="password"
+      id="passwordInput"
+      placeholder="Şifreyi gir"
+      onkeydown="if(event.key === 'Enter') checkPassword()"
+    >
 
     <button onclick="checkPassword()">Kalbime Gir 💜</button>
-
     <p id="errorMessage"></p>
   </div>
 </div>
@@ -175,27 +201,37 @@ footer {
   <h1>Hasret Naz’ım 💜</h1>
   <p>Bu sayfanın her satırı sana...</p>
 
-  <!-- FOTOĞRAFLAR -->
+  <!-- 11 FOTOĞRAF -->
   <div class="card">
+    <h2>💜 Anılarımız 💜</h2>
+
     <div class="slideshow">
-      <img src="foto1.jpg" class="slide active">
-      <img src="foto2.jpg" class="slide">
-      <img src="foto3.jpg" class="slide">
-      <img src="foto4.jpg" class="slide">
-      <img src="foto5.jpg" class="slide">
-      <img src="foto6.jpg" class="slide">
-      <img src="foto7.jpg" class="slide">
+      <img src="foto1.jpg" class="slide active" alt="Fotoğraf 1">
+      <img src="foto2.jpg" class="slide" alt="Fotoğraf 2">
+      <img src="foto3.jpg" class="slide" alt="Fotoğraf 3">
+      <img src="foto4.jpg" class="slide" alt="Fotoğraf 4">
+      <img src="foto5.jpg" class="slide" alt="Fotoğraf 5">
+      <img src="foto6.jpg" class="slide" alt="Fotoğraf 6">
+      <img src="foto7.jpg" class="slide" alt="Fotoğraf 7">
+      <img src="foto8.jpg" class="slide" alt="Fotoğraf 8">
+      <img src="foto9.jpg" class="slide" alt="Fotoğraf 9">
+      <img src="foto10.jpg" class="slide" alt="Fotoğraf 10">
+      <img src="foto11.jpg" class="slide" alt="Fotoğraf 11">
     </div>
 
-    <button onclick="previousSlide()">❮</button>
-    <button onclick="nextSlide()">❯</button>
+    <div class="photo-counter" id="photoCounter">
+      1 / 11
+    </div>
+
+    <button onclick="previousSlide()">❮ Önceki</button>
+    <button onclick="nextSlide()">Sonraki ❯</button>
   </div>
 
   <!-- MÜZİK -->
   <div class="card">
-    <h2>Bizim Şarkımız 🎵</h2>
+    <h2>🎵 Bizim Şarkımız</h2>
 
-    <audio id="ourSong" controls loop>
+    <audio id="ourSong" controls loop preload="auto">
       <source src="muzik1.mp3" type="audio/mpeg">
       Tarayıcınız müzik oynatmayı desteklemiyor.
     </audio>
@@ -265,7 +301,9 @@ Sevişen yaramaz çocuklar gibi.
       Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
       Bu sayfa da sana söylemek istediklerimin küçücük bir parçası...
 
-      Her fotoğraf bir hatıra, her şarkı ayrı bir duygu.
+      Her fotoğraf bir hatıra, her şarkı ayrı bir duygu,
+      her satır sana anlatmak istediğim güzel şeylerin küçük bir parçası.
+
       Umarım bu sayfa yüzünde güzel bir tebessüm bırakır.
       İyi ki hayatımdasın. Her şeyin en güzeli senin olsun. 💜
     </div>
@@ -280,17 +318,21 @@ Sevişen yaramaz çocuklar gibi.
 </div>
 
 <script>
+
 const PASSWORD = "15.10.26";
 
+/* ŞİFRE KONTROLÜ */
 function checkPassword() {
-  if (document.getElementById("passwordInput").value === PASSWORD) {
+  const input = document.getElementById("passwordInput").value;
+
+  if (input === PASSWORD) {
     document.getElementById("passwordScreen").style.display = "none";
     document.getElementById("siteContent").style.display = "block";
 
     const song = document.getElementById("ourSong");
 
     song.play().catch(() => {
-      // Tarayıcı otomatik müziği engellerse oynat tuşuna basılabilir.
+      // Otomatik oynatma engellenirse kullanıcı oynat tuşuna basabilir.
     });
 
     startSlideshow();
@@ -306,14 +348,20 @@ function checkPassword() {
 /* FOTOĞRAF SLAYTI */
 let currentSlide = 0;
 let slideTimer;
+
 const slides = document.querySelectorAll(".slide");
 
 function showSlide(index) {
-  slides.forEach(slide => slide.classList.remove("active"));
+  slides.forEach(slide => {
+    slide.classList.remove("active");
+  });
 
   currentSlide = (index + slides.length) % slides.length;
 
   slides[currentSlide].classList.add("active");
+
+  document.getElementById("photoCounter").textContent =
+    (currentSlide + 1) + " / " + slides.length;
 }
 
 function nextSlide() {
@@ -332,7 +380,7 @@ function startSlideshow() {
   }, 4000);
 }
 
-/* ŞİİRLER HARF HARF YAZILIR */
+/* ŞİİRLERİ HARF HARF YAZ */
 function startPoems() {
   const poems = [
     document.getElementById("poem1"),
@@ -352,6 +400,7 @@ function startPoems() {
 
     const element = poems[poemIndex];
     const text = texts[poemIndex];
+
     let index = 0;
 
     element.classList.add("typing-cursor");
@@ -388,6 +437,7 @@ function startHearts() {
     const heart = document.createElement("div");
 
     heart.className = "heart";
+
     heart.textContent = ["💜", "💕", "💖", "❤️"][
       Math.floor(Math.random() * 4)
     ];
@@ -403,6 +453,7 @@ function startHearts() {
 
   }, 500);
 }
+
 </script>
 
 </body>
