@@ -221,7 +221,7 @@ audio {
   <h1>Hasret Naz’ım 💜</h1>
   <p>Bu sayfanın her satırı sana...</p>
 
-  <!-- 17 FOTOĞRAF -->
+  <!-- 19 FOTOĞRAF -->
   <div class="card">
     <h2>💜 Anılarımız 💜</h2>
 
@@ -243,10 +243,12 @@ audio {
       <img src="foto15.jpg" class="slide" alt="Fotoğraf 15">
       <img src="foto16.jpg" class="slide" alt="Fotoğraf 16">
       <img src="foto17.jpg" class="slide" alt="Fotoğraf 17">
+      <img src="foto18.jpg" class="slide" alt="Fotoğraf 18">
+      <img src="foto19.jpg" class="slide" alt="Fotoğraf 19">
     </div>
 
     <div class="photo-counter" id="photoCounter">
-      1 / 17
+      1 / 19
     </div>
 
     <button onclick="previousSlide()">❮ Önceki</button>
@@ -258,7 +260,7 @@ audio {
     <h2>🎵 Bizim Şarkımız</h2>
 
     <audio id="ourSong" controls loop preload="auto">
-      <source src="muzik1.mp3" type="audio/mpeg">
+      <source src="muzik2.mp3" type="audio/mpeg">
       Tarayıcınız müzik oynatmayı desteklemiyor.
     </audio>
   </div>
@@ -358,7 +360,8 @@ function checkPassword() {
     const song = document.getElementById("ourSong");
 
     song.play().catch(() => {
-      // Gerekirse müziği kullanıcı oynatabilir.
+      // Tarayıcı otomatik oynatmayı engellerse
+      // kullanıcı müziği oynat tuşuyla başlatabilir.
     });
 
     startSlideshow();
