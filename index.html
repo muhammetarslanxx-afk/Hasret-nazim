@@ -13,11 +13,11 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: Georgia, serif;
   color: white;
   text-align: center;
   background: linear-gradient(135deg, #1a002b, #4b176d, #24003b);
-  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -110,6 +110,7 @@ h1 {
 .photo-counter {
   color: #e6b8ff;
   margin-top: 12px;
+  font-size: 17px;
 }
 
 .poem-title {
@@ -161,6 +162,7 @@ h1 {
   line-height: 2;
   font-size: 18px;
   margin-top: 20px;
+  white-space: pre-line;
 }
 
 footer {
@@ -171,6 +173,24 @@ footer {
 audio {
   width: 100%;
   max-width: 400px;
+}
+
+@media (max-width: 600px) {
+  #siteContent {
+    padding: 12px;
+  }
+
+  .slideshow img {
+    height: 300px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .poem {
+    font-size: 16px;
+  }
 }
 </style>
 </head>
@@ -201,7 +221,7 @@ audio {
   <h1>Hasret Naz’ım 💜</h1>
   <p>Bu sayfanın her satırı sana...</p>
 
-  <!-- 11 FOTOĞRAF -->
+  <!-- 17 FOTOĞRAF -->
   <div class="card">
     <h2>💜 Anılarımız 💜</h2>
 
@@ -217,10 +237,16 @@ audio {
       <img src="foto9.jpg" class="slide" alt="Fotoğraf 9">
       <img src="foto10.jpg" class="slide" alt="Fotoğraf 10">
       <img src="foto11.jpg" class="slide" alt="Fotoğraf 11">
+      <img src="foto12.jpg" class="slide" alt="Fotoğraf 12">
+      <img src="foto13.jpg" class="slide" alt="Fotoğraf 13">
+      <img src="foto14.jpg" class="slide" alt="Fotoğraf 14">
+      <img src="foto15.jpg" class="slide" alt="Fotoğraf 15">
+      <img src="foto16.jpg" class="slide" alt="Fotoğraf 16">
+      <img src="foto17.jpg" class="slide" alt="Fotoğraf 17">
     </div>
 
     <div class="photo-counter" id="photoCounter">
-      1 / 11
+      1 / 17
     </div>
 
     <button onclick="previousSlide()">❮ Önceki</button>
@@ -298,14 +324,14 @@ Sevişen yaramaz çocuklar gibi.
     <button onclick="showSurprise()">Sürprizi Aç 💜</button>
 
     <div id="surprise">
-      Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
-      Bu sayfa da sana söylemek istediklerimin küçücük bir parçası...
+Bazen kelimeler hissettiklerimizi anlatmaya yetmez.
+Bu sayfa da sana söylemek istediklerimin küçücük bir parçası...
 
-      Her fotoğraf bir hatıra, her şarkı ayrı bir duygu,
-      her satır sana anlatmak istediğim güzel şeylerin küçük bir parçası.
+Her fotoğraf bir hatıra, her şarkı ayrı bir duygu,
+her satır sana anlatmak istediğim güzel şeylerin küçük bir parçası.
 
-      Umarım bu sayfa yüzünde güzel bir tebessüm bırakır.
-      İyi ki hayatımdasın. Her şeyin en güzeli senin olsun. 💜
+Umarım bu sayfa yüzünde güzel bir tebessüm bırakır.
+İyi ki hayatımdasın. Her şeyin en güzeli senin olsun. 💜
     </div>
   </div>
 
@@ -319,9 +345,9 @@ Sevişen yaramaz çocuklar gibi.
 
 <script>
 
+/* ŞİFRE */
 const PASSWORD = "15.10.26";
 
-/* ŞİFRE KONTROLÜ */
 function checkPassword() {
   const input = document.getElementById("passwordInput").value;
 
@@ -332,7 +358,7 @@ function checkPassword() {
     const song = document.getElementById("ourSong");
 
     song.play().catch(() => {
-      // Otomatik oynatma engellenirse kullanıcı oynat tuşuna basabilir.
+      // Gerekirse müziği kullanıcı oynatabilir.
     });
 
     startSlideshow();
